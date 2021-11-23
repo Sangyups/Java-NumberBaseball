@@ -4,7 +4,6 @@ package baseball;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 
 public class Game {
     private ArrayList<Integer> randomNumber = new ArrayList<>();
@@ -14,9 +13,9 @@ public class Game {
         for(int i = 0; i < size; i++) {
             int rand = RandomUtils.nextInt(1, 9);
             randomNumber.add(i, rand);
-            if(randomNumber.stream().
+            if (randomNumber.stream().
                     distinct().
-                    count() != randomNumber.size()){
+                    count() != randomNumber.size()) {
 //                그냥 i--만 하면 자동으로 i번째 index에 overwrite할 줄 알았는데 무한루프에 빠짐.
                 randomNumber.remove(i--);
             }
@@ -25,19 +24,8 @@ public class Game {
         randomNumber.forEach(System.out::println);
     }
 
-    public int checkInput(String inputNumber) {
-        int number = -1;
-        try {
-//            사용자가 숫자를 입력했는가?
-            number = Integer.parseInt(inputNumber);
-        } catch (Exception e) {
-            return number;
-        }
-//        숫자가 size만큼의 자리수가 아닐때
-        if (number / Math.pow(10, size - 1) > 9 || number / Math.pow(10, size - 1) < 1) {
-            throw new IllegalArgumentException();
-        }
-        return number;
+    public int getSize() {
+        return size;
     }
 
     private ArrayList<Integer> sliceInput(int inputNumber) {
@@ -50,7 +38,7 @@ public class Game {
         return slicedInput;
     }
 
-    public void guessNumber(int inputNumber) {
+    private boolean guessNumber(int inputNumber) {
 
         ArrayList<Integer> slicedInput = new ArrayList<>();
 
@@ -76,7 +64,12 @@ public class Game {
         System.out.println(result);
         if (scores[1] == size) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            return true;
         }
-        return;
+        return false;
+    }
+
+    public void startGame(int inputNumber) {
+        guessNumber(inputNumber);
     }
 }
