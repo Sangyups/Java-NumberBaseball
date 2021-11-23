@@ -62,10 +62,17 @@ public class Game {
             if(randomNumber.indexOf(i) == scores[0]++) scores[1]++;
             else if(randomNumber.indexOf(i) != -1) scores[2]++;
         });
-        if(scores[1] != 0 && scores[2] != 0) {
-            System.out.println(scores[2] + "볼 " + scores[1] + "스트라이크");
-        } else {
-            System.out.println("낫싱");
+        String result="";
+
+        if(scores[2] > 0) {
+            result += scores[2] + "볼 ";
+        }
+        if(scores[1] > 0) {
+            result += scores[1] + "스트라이크";
+        }
+        System.out.println(result);
+        if(scores[1] == size) {
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
         }
         return;
     }
