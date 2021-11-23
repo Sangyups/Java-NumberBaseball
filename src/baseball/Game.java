@@ -22,7 +22,7 @@ public class Game {
             }
         }
 //        for debug
-        randomNumber.forEach(System.out::println);
+//        randomNumber.forEach(System.out::println);
     }
 
     public int getSize() {
