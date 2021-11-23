@@ -4,6 +4,7 @@ package baseball;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class Game {
     private ArrayList<Integer> randomNumber = new ArrayList<>();
@@ -20,6 +21,8 @@ public class Game {
                 randomNumber.remove(i--);
             }
         }
+//        for debug
+        randomNumber.forEach(System.out::println);
     }
 
     private int checkInput(String inputNumber) {
@@ -44,7 +47,7 @@ public class Game {
         }
         return slicedInput;
     }
-    public String guessNumber(String inputNumber) {
+    public void guessNumber(String inputNumber) {
         int gotNumber = checkInput(inputNumber);
         ArrayList<Integer> slicedInput = new ArrayList<>();
         if(gotNumber == -1){
@@ -52,9 +55,18 @@ public class Game {
         } else {
             slicedInput = sliceInput(gotNumber);
         }
-        for(Integer i: slicedInput) {
-            System.out.println(i);
+//        current index, strikes, balls
+        int[] scores = {0, 0, 0};
+
+        slicedInput.forEach(i->{
+            if(randomNumber.indexOf(i) == scores[0]++) scores[1]++;
+            else if(randomNumber.indexOf(i) != -1) scores[2]++;
+        });
+        if(scores[1] != 0 && scores[2] != 0) {
+            System.out.println(scores[2] + "볼 " + scores[1] + "스트라이크");
+        } else {
+            System.out.println("낫싱");
         }
-        return "asd";
+        return;
     }
 }
