@@ -4,6 +4,7 @@ package baseball;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
     private ArrayList<Integer> randomNumber = new ArrayList<>();
@@ -70,6 +71,10 @@ public class Game {
     }
 
     public void startGame(int inputNumber) {
-        guessNumber(inputNumber);
+        final Scanner scanner = new Scanner(System.in);
+        int guess = inputNumber;
+        while (!guessNumber(guess)) {
+            guess = Application.userInteraction(scanner, size);
+        }
     }
 }
