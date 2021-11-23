@@ -1,10 +1,10 @@
 package baseball;
 
 
+import utils.InputHandler;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Game {
     private ArrayList<Integer> randomNumber = new ArrayList<>();
@@ -71,10 +71,10 @@ public class Game {
     }
 
     public void startGame(int inputNumber) {
-        final Scanner scanner = new Scanner(System.in);
         int guess = inputNumber;
         while (!guessNumber(guess)) {
-            guess = Application.userInteraction(scanner, size);
+            guess = InputHandler.userGuessInteraction(size);
         }
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
     }
 }
