@@ -70,6 +70,9 @@ public class Game {
         if(scores[1] > 0) {
             result += scores[1] + "스트라이크";
         }
+        if(scores[1] == 0 && scores[2] == 0) {
+            result="낫싱";
+        }
         System.out.println(result);
         if(scores[1] == size) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
