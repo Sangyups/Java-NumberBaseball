@@ -5,25 +5,38 @@ import utils.InputUtils;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Game {
     private ArrayList<Integer> randomNumber;
-    private Integer size;
+    private Integer sizeOfNum;
 
     Game() {
-        this.size = 3;
-        this.randomNumber = RandomUtils.nextArray(this.size);
+        this.sizeOfNum = 3;
     }
 
     public int getSize() {
-        return size;
+        return sizeOfNum;
+    }
+
+    private void generateNumber() {
+        randomNumber = IntStream.generate(() -> RandomUtils.nextInt(1, 9))
+                .distinct()
+                .limit(sizeOfNum)
+                .mapToObj(i -> i)
+                .collect(Collectors.toCollection(ArrayList::new));
+
+//        for debug
+//        randomNumber.forEach(System.out::print);
+//        System.out.println();
     }
 
     private ArrayList<Integer> sliceInput(int inputNumber) {
         ArrayList<Integer> slicedInput = new ArrayList<>();
-        for (int i = size - 1; i >= 0; i--) {
+        for (int i = sizeOfNum - 1; i >= 0; i--) {
             int div = (int) Math.pow(10, i);
-            slicedInput.add(size - 1 - i, inputNumber / div);
+            slicedInput.add(sizeOfNum - 1 - i, inputNumber / div);
             inputNumber %= div;
         }
         return slicedInput;
@@ -53,18 +66,23 @@ public class Game {
             result = "낫싱";
         }
         System.out.println(result);
-        if (scores[1] == size) {
+        if (scores[1] == sizeOfNum) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
             return true;
         }
         return false;
     }
 
-    public void startGame(int inputNumber) {
-        int guess = inputNumber;
+    public void startGame() {
+        int guess = 0;
         while (!guessNumber(guess)) {
-            guess = InputUtils.userGuessInteraction(size);
+            guess = InputUtils.userGuessInteraction(sizeOfNum);
         }
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+    }
+
+    public void initializeGame() {
+        generateNumber();
+        startGame();
     }
 }

@@ -28,18 +28,4 @@ public class RandomUtils {
         return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
     }
 
-    public static ArrayList<Integer> nextArray(final int size) {
-        ArrayList<Integer> randomNumber =
-                IntStream.generate(() -> nextInt(1, 9))
-                        .distinct()
-                        .limit(3)
-                        .mapToObj(i -> i)
-                        .collect(Collectors.toCollection(ArrayList::new));
-
-//        for debug
-//        randomNumber.forEach(System.out::print);
-//        System.out.println();
-
-        return randomNumber;
-    }
 }
