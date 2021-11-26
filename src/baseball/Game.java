@@ -85,10 +85,10 @@ public class Game {
             restart = InputUtils.userRestartInteraction();
         } while (restart != 1 && restart != 2);
 
-        if (restart == 1) initializeGame();
+        if (restart == 1) startGame();
     }
 
-    public void startGame() {
+    public void playGame() {
         int guess;
         do {
             guess = InputUtils.userGuessInteraction(sizeOfNum);
@@ -96,8 +96,8 @@ public class Game {
         restartGame();
     }
 
-    public void initializeGame() {
+    public void startGame() {
         generateNumber();
-        startGame();
+        playGame();
     }
 }
