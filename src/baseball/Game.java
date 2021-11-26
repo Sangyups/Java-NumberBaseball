@@ -28,8 +28,8 @@ public class Game {
                 .collect(Collectors.toCollection(ArrayList::new));
 
 //        for debug
-//        randomNumber.forEach(System.out::print);
-//        System.out.println();
+        randomNumber.forEach(System.out::print);
+        System.out.println();
     }
 
     private ArrayList<Integer> sliceInput(int inputNumber) {
@@ -78,12 +78,22 @@ public class Game {
         return scores[1] == sizeOfNum;
     }
 
+    public void restartGame() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+        int restart;
+        do {
+            restart = InputUtils.userRestartInteraction();
+        } while (restart != 1 && restart != 2);
+
+        if (restart == 1) initializeGame();
+    }
+
     public void startGame() {
         int guess;
         do {
             guess = InputUtils.userGuessInteraction(sizeOfNum);
         } while (!guessNumber(guess));
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
+        restartGame();
     }
 
     public void initializeGame() {
