@@ -44,17 +44,7 @@ public class Game {
         return slicedInput;
     }
 
-    private boolean guessNumber(int inputNumber) {
-
-        ArrayList<Integer> slicedInput = sliceInput(inputNumber);
-
-//        current index, strikes, balls
-        int[] scores = {0, 0, 0};
-
-        slicedInput.forEach(i -> {
-            if (randomNumber.indexOf(i) == scores[0]++) scores[1]++;
-            else if (randomNumber.indexOf(i) != -1) scores[2]++;
-        });
+    private void printResult(int[] scores) {
         String result = "";
         if (scores[2] > 0) {
             result += scores[2] + "볼 ";
@@ -68,9 +58,24 @@ public class Game {
         System.out.println(result);
         if (scores[1] == sizeOfNum) {
             System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
-            return true;
         }
-        return false;
+    }
+
+    private boolean guessNumber(int inputNumber) {
+
+        ArrayList<Integer> slicedInput = sliceInput(inputNumber);
+
+//        current index, strikes, balls
+        int[] scores = {0, 0, 0};
+
+        slicedInput.forEach(i -> {
+            if (randomNumber.indexOf(i) == scores[0]++) scores[1]++;
+            else if (randomNumber.indexOf(i) != -1) scores[2]++;
+        });
+
+        printResult(scores);
+
+        return scores[1] == sizeOfNum;
     }
 
     public void startGame() {
