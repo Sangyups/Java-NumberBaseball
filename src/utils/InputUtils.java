@@ -49,23 +49,13 @@ public class InputUtils {
         return number;
     }
 
-    public static int userGuessInteraction(int size) {
+    public static int userInteraction(int size, String message) {
         int number = -1;
         do {
-            System.out.print("숫자를 입력해주세요 : ");
+            System.out.print(message);
             String inputNumber = scanner.nextLine();
             number = getNumberIfValid(inputNumber, size);
         } while (number == -1);
         return number;
-    }
-
-    public static int userRestartInteraction() {
-        final Scanner scanner = new Scanner(System.in);
-        int restart = 0;
-        do {
-            String inputNumber = scanner.next();
-            restart = inputRestartHandler(inputNumber);
-        } while (restart == -1);
-        return restart;
     }
 }

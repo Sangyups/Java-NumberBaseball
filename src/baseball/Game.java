@@ -79,10 +79,10 @@ public class Game {
     }
 
     public void restartGame() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
         int restart;
         do {
-            restart = InputUtils.userRestartInteraction();
+            String message = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요 \n";
+            restart = InputUtils.userInteraction(1, message);
         } while (restart != 1 && restart != 2);
 
         if (restart == 1) startGame();
@@ -91,7 +91,8 @@ public class Game {
     public void playGame() {
         int guess;
         do {
-            guess = InputUtils.userGuessInteraction(sizeOfNum);
+            String message = "숫자를 입력해주세요 : ";
+            guess = InputUtils.userInteraction(sizeOfNum, message);
         } while (!guessNumber(guess));
         restartGame();
     }
