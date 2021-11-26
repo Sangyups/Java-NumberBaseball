@@ -1,15 +1,16 @@
 package baseball;
 
 
-import utils.InputHandler;
+import utils.InputUtils;
 import utils.RandomUtils;
 
 import java.util.ArrayList;
 
 public class Game {
-    private ArrayList<Integer> randomNumber = new ArrayList<>();
+    private ArrayList<Integer> randomNumber;
     private Integer size;
-    Game(){
+
+    Game() {
         this.size = 3;
         this.randomNumber = RandomUtils.nextArray(this.size);
     }
@@ -62,7 +63,7 @@ public class Game {
     public void startGame(int inputNumber) {
         int guess = inputNumber;
         while (!guessNumber(guess)) {
-            guess = InputHandler.userGuessInteraction(size);
+            guess = InputUtils.userGuessInteraction(size);
         }
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
     }

@@ -2,8 +2,11 @@ package utils;
 
 import java.util.Scanner;
 
-public class InputHandler {
-    private InputHandler() {
+public class InputUtils {
+
+    Scanner scanner = new Scanner(System.in);
+
+    private InputUtils() {
     }
 
     private static void checkDigit(int number, int size) {
