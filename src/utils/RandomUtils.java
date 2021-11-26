@@ -1,7 +1,10 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class RandomUtils {
     private static final Random RANDOM = new Random();
@@ -26,19 +29,16 @@ public class RandomUtils {
     }
 
     public static ArrayList<Integer> nextArray(final int size) {
-        ArrayList<Integer> randomNumber = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            int rand = nextInt(1, 9);
-            randomNumber.add(i, rand);
-            if (randomNumber.stream().
-                    distinct().
-                    count() != randomNumber.size()) {
-//                그냥 i--만 하면 자동으로 i번째 index에 overwrite할 줄 알았는데 무한루프에 빠짐.
-                randomNumber.remove(i--);
-            }
-        }
+        ArrayList<Integer> randomNumber =
+                IntStream.generate(() -> nextInt(1, 9))
+                        .distinct()
+                        .limit(3)
+                        .mapToObj(i -> i)
+                        .collect(Collectors.toCollection(ArrayList::new));
+
 //        for debug
-//        randomNumber.forEach(System.out::println);
+//        randomNumber.forEach(System.out::print);
+//        System.out.println();
 
         return randomNumber;
     }

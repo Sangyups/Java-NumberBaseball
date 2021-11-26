@@ -10,8 +10,8 @@ public class Game {
     private ArrayList<Integer> randomNumber = new ArrayList<>();
     private Integer size;
     Game(){
-        size = 3;
-
+        this.size = 3;
+        this.randomNumber = RandomUtils.nextArray(this.size);
     }
 
     public int getSize() {
