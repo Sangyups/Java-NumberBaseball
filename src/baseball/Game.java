@@ -36,7 +36,9 @@ public class Game {
         ArrayList<Integer> slicedInput = new ArrayList<>();
         for (int i = sizeOfNum - 1; i >= 0; i--) {
             int div = (int) Math.pow(10, i);
-            slicedInput.add(sizeOfNum - 1 - i, inputNumber / div);
+            int index = sizeOfNum - 1 - i;
+            int digit = inputNumber / div;
+            slicedInput.add(index, digit);
             inputNumber %= div;
         }
         return slicedInput;
@@ -44,9 +46,7 @@ public class Game {
 
     private boolean guessNumber(int inputNumber) {
 
-        ArrayList<Integer> slicedInput = new ArrayList<>();
-
-        slicedInput = sliceInput(inputNumber);
+        ArrayList<Integer> slicedInput = sliceInput(inputNumber);
 
 //        current index, strikes, balls
         int[] scores = {0, 0, 0};
