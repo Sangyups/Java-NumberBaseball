@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomUtils {
@@ -22,5 +23,23 @@ public class RandomUtils {
         }
 
         return startInclusive + RANDOM.nextInt(endInclusive - startInclusive + 1);
+    }
+
+    public static ArrayList<Integer> nextArray(final int size) {
+        ArrayList<Integer> randomNumber = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            int rand = nextInt(1, 9);
+            randomNumber.add(i, rand);
+            if (randomNumber.stream().
+                    distinct().
+                    count() != randomNumber.size()) {
+//                그냥 i--만 하면 자동으로 i번째 index에 overwrite할 줄 알았는데 무한루프에 빠짐.
+                randomNumber.remove(i--);
+            }
+        }
+//        for debug
+//        randomNumber.forEach(System.out::println);
+
+        return randomNumber;
     }
 }

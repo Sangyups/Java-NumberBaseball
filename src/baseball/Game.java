@@ -11,18 +11,7 @@ public class Game {
     private Integer size;
     Game(){
         size = 3;
-        for(int i = 0; i < size; i++) {
-            int rand = RandomUtils.nextInt(1, 9);
-            randomNumber.add(i, rand);
-            if (randomNumber.stream().
-                    distinct().
-                    count() != randomNumber.size()) {
-//                그냥 i--만 하면 자동으로 i번째 index에 overwrite할 줄 알았는데 무한루프에 빠짐.
-                randomNumber.remove(i--);
-            }
-        }
-//        for debug
-//        randomNumber.forEach(System.out::println);
+
     }
 
     public int getSize() {
