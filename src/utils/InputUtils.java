@@ -10,7 +10,7 @@ public class InputUtils {
     }
 
     private static void checkDigit(String number, int size) {
-        if (number.length() != 3) throw new IllegalArgumentException();
+        if (number.length() != size) throw new IllegalArgumentException();
     }
 
     private static int getNumberOrException(String input) {
