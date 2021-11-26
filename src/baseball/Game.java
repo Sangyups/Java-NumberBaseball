@@ -74,10 +74,10 @@ public class Game {
     }
 
     public void startGame() {
-        int guess = 0;
-        while (!guessNumber(guess)) {
+        int guess;
+        do {
             guess = InputUtils.userGuessInteraction(sizeOfNum);
-        }
+        } while (!guessNumber(guess));
         System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요");
     }
 
