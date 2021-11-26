@@ -36,19 +36,6 @@ public class InputUtils {
         return number;
     }
 
-    public static int inputRestartHandler(String inputNumber) {
-        int number = -1;
-        try {
-//            사용자가 숫자를 입력했는가
-            number = Integer.parseInt(inputNumber);
-            if (number != 1 && number != 2) throw new IllegalArgumentException();
-        } catch (Exception e) {
-            System.err.println("맞는 값을 입력해주세요");
-            return -1;
-        }
-        return number;
-    }
-
     public static int userInteraction(int size, String message) {
         int number = -1;
         do {
